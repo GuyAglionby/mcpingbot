@@ -67,7 +67,7 @@ def ping_command(bot, update, **kwargs):
     split_message = update.message.text.split()
 
     if len(split_message) == 2:
-        bot.sendChatAction(chat_id=chat_id, action=telegram.ChatAction.TYPING)
+        bot.sendChatAction(chat_id, action=telegram.ChatAction.TYPING)
         data = ping_server(split_message[1])
 
         if 'Error' in data:
@@ -91,8 +91,7 @@ def ping_command(bot, update, **kwargs):
             message = u'{0}:\n{1}/{2} players online\n\n{3}'.format(split_message[1], players, max_players, description)
             bot.sendMessage(chat_id, text=message, disable_web_page_preview=True)
     else:
-        bot.sendMessage(chat_id, text="Incorrect syntax: /ping <server>")
-
+        bot.sendMessage(chat_id, text="Incorrect syntax: /ping host[:port]")
 
 # # # # # # # # #
 # MC Networking #
